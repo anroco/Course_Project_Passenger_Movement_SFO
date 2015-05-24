@@ -1,7 +1,7 @@
 Overview
 ==================
 
-This application above shows the movement of passengers in the San Francisco International Airport (SFO). The source data are obtained from the [Air Traffic Statistics](http://www.flysfo.com/media/facts-statistics/air-traffic-statistics) which contains data from to July 2005 and are updated quarterly (this application to handle data from July 2005 to March 2015, [download](https://github.com/anroco/Course_Project_Passenger_Movement_SFO/data/Passenger.zip)). The passenger dataset contains data about passenger traffic into and out of SFO with monthly totals by region, terminal, type of action performed by the passenger and other fields.
+This application above shows the movement of passengers in the San Francisco International Airport (SFO). The source data are obtained from the [Air Traffic Statistics](http://www.flysfo.com/media/facts-statistics/air-traffic-statistics) which contains data from to July 2005 and are updated quarterly (this application to handle data from July 2005 to March 2015, [download](https://github.com/anroco/Course_Project_Passenger_Movement_SFO/blob/master/data/Passenger.zip?raw=true)). The passenger dataset contains data about passenger traffic into and out of SFO with monthly totals by region, terminal, type of action performed by the passenger and other fields.
 
 The code of the application is posted on [github](https://github.com/anroco/Course_Project_Passenger_Movement_SFO).
 
