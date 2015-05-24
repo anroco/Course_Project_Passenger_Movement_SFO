@@ -1,0 +1,75 @@
+Passenger movement in SFO
+========================================================
+author: Andres Rodriguez Contreras
+date: Sun May 24 2015
+
+Introduction
+========================================================
+
+This application shows the movement of passengers in the San Francisco International Airport (SFO), the dataset used in this application has records in a period between July 2005 and March 2015, also contains data about passenger traffic into and out of SFO with monthly totals by region, terminal, type of action performed by the passenger and other fields.
+
+* The application is deployed on [Rstudio's shiny server](http://anroco.shinyapps.io/Passenger_movement_SFO).
+
+* The application source code is hosted on [github](https://github.com/anroco/Course_Project_Passenger_Movement_SFO).
+
+For more information see the "help" section in the application.
+
+
+The Application
+========================================================
+
+The application consists of three segments:
+
+* In the left side you will find a panel with different filters to be applied as: activity period, region, terminal, and the type of activity carried by passengers.
+
+* In the right side a panel which shows four graphs with the result of the applied filter.
+
+* A third panel at the top of the page, where the aid corresponding to how to use the application and development related information is displayed.
+
+Performing a query
+========================================================
+
+<small style="font-size:.6em">
+
+```r
+source("helpers.R")
+start.date <- as.Date("2008-07-01")
+end.date <- as.Date("2009-07-01")
+region <- c("Asia", "Europe")
+action_type <- c("Deplaned", "Enplaned")
+terminal <- c("International", "Terminal 1")
+result <- filterByPeriod(SFO_data, start.date, end.date, region, action_type, terminal)
+head(result)
+```
+
+```
+Source: local data frame [6 x 5]
+Groups: Activity.Period, GEO.Region, Activity.Type.Code
+
+  Activity.Period GEO.Region Activity.Type.Code      Terminal
+1      2008-07-01       Asia           Deplaned International
+2      2008-07-01       Asia           Enplaned International
+3      2008-07-01     Europe           Deplaned International
+4      2008-07-01     Europe           Enplaned International
+5      2008-08-01       Asia           Deplaned International
+6      2008-08-01       Asia           Enplaned International
+Variables not shown: Passenger.Count (int)
+```
+</small>
+
+Result plot
+========================================================
+
+<small style="font-size:.5em">
+
+```r
+ggplot(group_by_fields(result, c("Activity.Period", "GEO.Region")), 
+               aes(Activity.Period, Passenger.Count/1000, 
+                   group=GEO.Region, colour=GEO.Region)) +
+            geom_line() + geom_point() + 
+            scale_x_date(labels = date_format("%b-%Y")) + 
+            labs(x = "Period of activity", y = "Passenger numbers (in thousands)")
+```
+
+<img src="Pesentation-figure/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="850px" height="400px" />
+</small>
